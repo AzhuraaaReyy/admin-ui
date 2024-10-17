@@ -1,14 +1,15 @@
-import Input from "./Input"
-import Label from "./Label"
+import Input from "./Input";
+import Label from "./Label";
 
+const LabeledInput = (props) => {
+  const { label, name, type, placeholder } = props;
 
-const index = () => {
   return (
-    <div>
-      <Label/>
-      <Input/>
-    </div>
-  )
-}
+    <>
+      <Label htmlFor={name}>{label}</Label>
+      <Input name={name} type={type} placeholder={placeholder} />
+    </>
+  );
+};
 
-export default index
+export default LabeledInput;

@@ -1,16 +1,11 @@
+const Label = (props) => {
+  const { htmlFor, children } = props;
 
-
-const Label = () => {
   return (
-    <div>
-       <label htmlFor="email" className="block text-sm mb-2">
-              Email Address
-            </label>
-        <label htmlFor="password" className="block text-sm mb-2">
-              Password
-            </label>
-    </div>
-  )
-}
+    <label htmlFor={htmlFor} className="block text-sm mb-2">
+      {children}
+    </label>
+  );
+};
 
-export default Label
+export default Label;
