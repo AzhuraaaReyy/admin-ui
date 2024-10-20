@@ -4,6 +4,7 @@ import Logo from '../Elements/Logo/Index'
 import FormSignIn from '../Fragments/FormSignIn'
 import { Link } from 'react-router-dom'
 
+
 const AuthLayout = (props) => {
   const {children,type} = props;
   return (
@@ -96,7 +97,7 @@ const AuthLayout = (props) => {
       </div>
       {/* sign in with google end */}
      {/* link start */}
-<div className="flex justify-center">
+<div className="flex flex-col items-center">
   {type == "sign up" ? (
     <>
       <span className="text-sm text-gray-03">
@@ -105,9 +106,13 @@ const AuthLayout = (props) => {
       <Link to = "/login" className="text-primary text-sm font-bold">Sign In Here</Link>
     </>
   ) : (
+    <>
     <Link to = "/register" className="text-primary text-sm font-bold">Create an account</Link>
+    <Link to="/forgetpassword" className="text-gray-03 text-sm font-bold mt-2">Forget Password?</Link>
+    </>
   )}
 </div>
+
 {/* link end */}
     </div>
     {/* container end */}

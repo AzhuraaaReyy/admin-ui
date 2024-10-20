@@ -1,6 +1,7 @@
 import Button from "../Elements/Button";
 import CheckBox from "../Elements/CheckBox";
 import LabeledInput from "../Elements/LabeledInput";
+import { Link } from 'react-router-dom'
 
 const FormSignIn = () => {
   return (
@@ -27,6 +28,7 @@ const FormSignIn = () => {
       <Button variant="bg-primary w-full text-white" type="submit" >
 	      Login
       </Button>
+      {/* <div className="flex flex-col items-center" ><Link to = "/forgetpassword" className="text-gray-03 text-sm font-bold mt-2">Forgot Password</Link></div>*/}
     </form>
   );
 };
