@@ -32,6 +32,7 @@ const FormForgetPassword = () => {
             <Link to="/login" className="text-gray-500 text-sm ">
                 Back to login
             </Link>
+            
             </div>
         </div>
     </div>
