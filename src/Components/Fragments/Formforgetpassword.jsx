@@ -1,6 +1,6 @@
 import LabeledInput from "../Elements/LabeledInput";
 import Button from "../Elements/Button";
-import Logo from "../Elements/Logo";
+import Logo from "../Elements/Logo/index";
 import { Link } from 'react-router-dom'
 const FormForgetpassword = () => {
     return (
