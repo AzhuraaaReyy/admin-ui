@@ -1,6 +1,5 @@
-import FormForgetpassword from "../Components/Fragments/formforgetpassword";
-import AuthLayout from "../Components/Layouts/AuthLayout";
-const ForgetPasswordPage = () => {
+import FormForgetpassword from "../Components/Fragments/FormForgetPassword";
+const ForgetPassword = () => {
     return (
       
         <FormForgetpassword />
@@ -8,4 +7,4 @@ const ForgetPasswordPage = () => {
     );
   };
   
-  export default ForgetPasswordPage;
+  export default ForgetPassword;
