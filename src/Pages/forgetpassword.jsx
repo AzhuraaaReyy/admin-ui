@@ -1,8 +1,8 @@
-import FormForgetpassword from "../Components/Fragments/FormForgetPassword";
+import FormForgetPassword from "../Components/Fragments/FormForgetPassword";
 const ForgetPassword = () => {
     return (
       
-        <FormForgetpassword />
+        <FormForgetPassword />
       
     );
   };

@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignInPage from "./Pages/signIn";
 import SignUpPage from "./Pages/signUp";
 import ErrorRoute from "./Pages/errorRoute";
-import ForgetPasswordPage from "./Pages/forgetpassword";
+import ForgetPassword from "./Pages/forgetpassword";
 
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
     },
     {
       path: "/forgetpassword",
-      element: <ForgetPasswordPage/>
+      element: <ForgetPassword/>
     },
 
   ]);
