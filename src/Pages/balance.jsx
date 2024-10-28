@@ -1,4 +1,4 @@
-import Card from "../components/Elements/Card/index";
+import Card from "../components/Elements/Card";
 import MainLayout from "../Components/Layouts/MainLayout";
 
 const BalancePage = () => {
