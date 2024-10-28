@@ -54,7 +54,7 @@ const App = () => {
     },
     {
       path: "/logout",
-      element: <ErrorRoute />,
+      element: <SignInPage />,
     },
   ]);
 
