@@ -75,7 +75,7 @@ const Navbar = () => {
         <div className="border-b my-10 border-b-special-bg"></div>
         <div className="flex justify-between">
           <div className="mx-auto sm:mx-0 self-center">
-            <img src="../public/images/Ellipse 22.png" />
+            <img src="/images/profile.png" />
           </div>
           <div className="hidden sm:block">
             <div className="text-white font-bold">Username</div>
