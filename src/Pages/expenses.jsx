@@ -1,6 +1,6 @@
 import MainLayout from "../Components/Layouts/MainLayout";
 
-import Card from "../Components/Elements/Card";
+import Card from "../Components/Elements/Card/Index";
 
 const ExpensesPage = () => {
   return (
