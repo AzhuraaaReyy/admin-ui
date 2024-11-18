@@ -1,4 +1,4 @@
-import Card from "../components/Elements/Card";
+import Card from "../Components/Elements/Card";
 import MainLayout from "../components/Layouts/MainLayout";
 
 const GoalPage = () => {
