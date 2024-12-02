@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const IconWrapper = ({ children }) => (
   <svg
     width="24"
@@ -472,5 +474,8 @@ export const Icon = {
   ShoppingIcon: ShoppingIcon,
   OthersIcon: OthersIcon,
   ArrowDown: ArrowDown,
-  GamePadIcon: GamePadIcon
+  GamePadIcon: GamePadIcon,
+};
+IconWrapper.propTypes = {
+  children: PropTypes.node.isRequired, // Validasi children sebagai node
 };

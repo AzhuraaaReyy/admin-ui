@@ -5,7 +5,7 @@ import expensesBreakdowns from "../data/expense";
 import transactions from "../data/transaction";
 import { Icon } from "../Components/Elements/Icon";
 import { useState } from "react";
-
+import CardBalance from "../Components/Fragments/Dashboard/CardBalance";
 const DashboardPage = () => {
   const tabs = ["All", "Revenue", "Expense"];
 
@@ -15,14 +15,13 @@ const DashboardPage = () => {
 
   function handleClick(e) {
     //setActiveTab(e.target.value); // untuk membuat fitur one klik
-    const transactionFiltered = // membuat one klik dengan memfilter bagian yang ada  
-    e.target.value != "All"
-    ? transactions.filter(({type})=> type == e.target.value)
-    :transactions;
+    const transactionFiltered = // membuat one klik dengan memfilter bagian yang ada
+      e.target.value != "All"
+        ? transactions.filter(({ type }) => type == e.target.value)
+        : transactions;
 
     setActiveTab(e.target.value);
     setTrx(transactionFiltered);
-    
   }
 
   const billCard = bills.map((bill) => (
@@ -98,7 +97,7 @@ const DashboardPage = () => {
     <MainLayout type="dashboard">
       {/* top content start*/}
       <div className="md:grid md:grid-cols-3 md:gap-x-6">
-        <Card title="Total Balance" />
+        <CardBalance />
         <Card
           title="Goals"
           desc="kon ipsum dolor sit amet consectetur adipisicing elit. Ullam dolore sapiente suscipit nam, vel officia ipsam praesentium earum unde provident nisi corrupti sit? Officia minima maxime magni quaerat id exercitationem."
