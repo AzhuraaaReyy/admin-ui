@@ -6,6 +6,7 @@ import transactions from "../data/transaction";
 import { Icon } from "../Components/Elements/Icon";
 import { useState } from "react";
 import CardBalance from "../Components/Fragments/Dashboard/CardBalance";
+
 const DashboardPage = () => {
   const tabs = ["All", "Revenue", "Expense"];
 
