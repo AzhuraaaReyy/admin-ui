@@ -1,5 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Sixtyfour+Convergence&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Sixtyfour+Convergence&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&family=Sixtyfour+Convergence&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&family=Sixtyfour+Convergence&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* default primary color*/
+    --color-primary: #299d91;
+  }
+}
+
+.theme-blue {
+  --color-primary: #1e90ff;
+}
+
+.theme-purple {
+  --color-primary: #6a5acd;
+}
+
+.theme-pink {
+  --color-primary: #db7093;
+}
+
+.theme-brown {
+  --color-primary: #8b4513;
+}

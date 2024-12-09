@@ -1,8 +1,20 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Icon } from "../Elements/Icon";
 import Logo from "../Elements/Logo/index";
-
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../Context/themeContext";
 const Navbar = () => {
+  //themes yang didefinisikan di component Navbar
+
+  const themes = [
+    { name: "theme-green", bgcolor: "bg-[#299D91]", color: "#299D91" },
+    { name: "theme-blue", bgcolor: "bg-[#1E90FF]", color: "#1E90FF" },
+    { name: "theme-purple", bgcolor: "bg-[#6A5ACD]", color: "#6A5ACD" },
+    { name: "theme-pink", bgcolor: "bg-[#DB7093]", color: "#DB7093" },
+    { name: "theme-brown", bgcolor: "bg-[#8B4513]", color: "#8B4513" },
+  ];
+
+  const { theme, setTheme } = useContext(ThemeContext);
   const menus = [
     {
       id: "overview",
@@ -52,29 +64,46 @@ const Navbar = () => {
     <div className="bg-defaultBlack">
       <nav className="sticky top-0 text-special-bg2 sm:w-72 w-28 min-h-screen px-7 py-12 flex flex-col justify-between">
         <div>
-          <div className="flex justify-center mb-10">
-            <Logo variant="text-white text-sm sm:text-2xl" />
-          </div>
+          <NavLink to="/" className="flex justify-center mb-10">
+            <Logo variant="text-primary text-sm sm:text-2xl" />
+          </NavLink>
           {menus.map((menu) => (
-            <Link to={menu.link} key={menu.id}>
-              <div className="flex hover:bg-green-700 hover:text-white px-4 py-3 rounded-md transition-colors duration-500 ease-in-out">
-                <div className="mx-auto sm:mx-0">{menu.icon}</div>
-                <div className="ms-3 hidden sm:block">{menu.label}</div>
-              </div>
-            </Link>
+            <NavLink
+              key={menu.id}
+              to={menu.link}
+              className={({ isActive }) =>
+                isActive
+                  ? "flex bg-primary text-white font-bold px-4 py-3 rounded-md"
+                  : "flex hover:bg-special-bg3 hover:text-white px-4 py-3 rounded-md"
+              }
+            >
+              <div className="mx-auto sm:mx-0">{menu.icon}</div>
+              <div className="ms-3 hidden sm:block">{menu.label}</div>
+            </NavLink>
           ))}
         </div>
-        <div className="sticky bottom-12">
-          <Link to="/logout">
-            <div className="flex bg-special-bg3 px-4 py-3 rounded-md hover:text-white hover:text-white hover:bg-green-700 transition duration-300 ease-in-out">
-              <div className="mx-auto sm:mx-0">
-                <Icon.Logout />
-              </div>
-              <div className="ms-3 hidden sm:block">Logout</div>
+        <div className="md:flex md:gap-2">
+          Themes
+          {themes.map((t) => (
+            <div
+              key={t.name}
+              className={`${t.bgcolor} md:w-6 h-6 rounded-md cursor-pointer mb-2`}
+              onClick={() => setTheme(t)}
+            ></div>
+          ))}
+        </div>
+        <div>
+          <NavLink
+            to="/logout"
+            className="flex bg-special-bg3 px-4 py-3 rounded-md hover:text-white"
+          >
+            <div className="mx-auto sm:mx-0 text-primary">
+              <Icon.Logout />
             </div>
-          </Link>
+            <div className="ms-3 hidden sm:block">Logout</div>
+          </NavLink>
           <div className="border-b my-10 border-b-special-bg"></div>
-          <div className="flex justify-between">
+          <NavLink to="/profile" className="flex justify-between">
             <div className="mx-auto sm:mx-0 self-center">
               <img src="images/profile.png" />
             </div>
@@ -82,10 +111,10 @@ const Navbar = () => {
               <div className="text-white font-bold">Username</div>
               <div className="text-xs">View Profile</div>
             </div>
-            <div className="hidden sm:block self-center justify-self-end">
+            <div className="hidden sm:block self-center">
               <Icon.KebabMenuIcon />
             </div>
-          </div>
+          </NavLink>
         </div>
       </nav>
     </div>
