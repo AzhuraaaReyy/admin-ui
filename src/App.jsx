@@ -1,7 +1,7 @@
 import {
   createBrowserRouter,
-  Navigate,
   RouterProvider,
+  Navigate,
 } from "react-router-dom";
 import SignInPage from "./Pages/signIn";
 import SignUpPage from "./Pages/signUp";
@@ -11,13 +11,15 @@ import DashboardPage from "./Pages/dashboard";
 import BalancePage from "./Pages/balance";
 import ExpensesPage from "./Pages/expenses";
 import GoalPage from "./Pages/goal";
-import { Children, useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "./Context/authContext";
 
 const App = () => {
   const { isLoggedIn } = useContext(AuthContext);
-  const RequireAuth = ({ Children }) => {
-    return isLoggedIn ? Children : <Navigate to="/login" />;
+
+  // Update `Children` to lowercase `children` as per React conventions
+  const RequireAuth = ({ children }) => {
+    return isLoggedIn ? children : <Navigate to="/login" />;
   };
 
   const myRouter = createBrowserRouter([
@@ -30,7 +32,7 @@ const App = () => {
       ),
     },
     {
-      path: "/eror",
+      path: "/error", // Fix typo "/eror" to "/error"
       element: <ErrorRoute />,
     },
     {
@@ -91,7 +93,7 @@ const App = () => {
     },
     {
       path: "/logout",
-      element: <SignInPage />,
+      element: <Navigate to="/login" />, // Redirect to login after logout
     },
   ]);
 

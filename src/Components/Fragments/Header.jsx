@@ -1,8 +1,9 @@
-import Input from "../Elements/LabeledInput/Input";
-import { FaBell } from "react-icons/fa";
-import { AuthContext } from "../../Context/authContext";
-import { ThemeContext } from "@emotion/react";
 import { useContext } from "react";
+import Input from "../Elements/LabeledInput/Input";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { ThemeContext } from "../../Context/themeContext";
+import { AuthContext } from "../../Context/authContext";
+
 const Header = () => {
   const { theme } = useContext(ThemeContext);
   const { name } = useContext(AuthContext);
@@ -19,8 +20,7 @@ const Header = () => {
       </div>
       <div className="flex">
         <div className="self-center">
-          <FaBell className="text-gray-01 scale-110" />{" "}
-          {/* Menggunakan icon dari react-icons */}
+          <NotificationsIcon className="text-primary scale-110" />
         </div>
         <div className="ms-10 hidden sm:block">
           <Input variant="bg-white w-80" />

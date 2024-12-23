@@ -1,13 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { Icon } from "../Elements/Icon";
+import { Icon } from "../Elements/Icon/index";
 import Logo from "../Elements/Logo/index";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../Context/themeContext";
 import { AuthContext } from "../../Context/authContext";
 import axios from "axios";
-const Navbar = () => {
-  //themes yang didefinisikan di component Navbar
 
+const Navbar = () => {
   const themes = [
     { name: "theme-green", bgcolor: "bg-[#299D91]", color: "#299D91" },
     { name: "theme-blue", bgcolor: "bg-[#1E90FF]", color: "#1E90FF" },
@@ -18,7 +17,7 @@ const Navbar = () => {
 
   const { theme, setTheme } = useContext(ThemeContext);
   const { setIsLoggedIn, setName, name } = useContext(AuthContext);
-  const navigate = useNavigate();
+
   const menus = [
     {
       id: "overview",
@@ -45,20 +44,20 @@ const Navbar = () => {
       label: "Bills",
     },
     {
-      id: "expenses",
-      link: "/expenses",
+      id: "expense",
+      link: "/expense",
       icon: <Icon.Expenses />,
       label: "Expenses",
     },
     {
       id: "goals",
-      link: "/goals",
+      link: "/goal",
       icon: <Icon.Goals />,
       label: "Goals",
     },
     {
-      id: "settings",
-      link: "/settings",
+      id: "setting",
+      link: "/setting",
       icon: <Icon.Settings />,
       label: "Settings",
     },
@@ -88,12 +87,13 @@ const Navbar = () => {
       }
     }
   };
+
   return (
     <div className={`bg-defaultBlack ${theme.name}`}>
       <nav className="sticky top-0 text-special-bg2 sm:w-72 w-28 min-h-screen px-7 py-12 flex flex-col justify-between">
         <div>
           <NavLink to="/" className="flex justify-center mb-10">
-            <Logo variant="text-primary text-sm sm:text-2xl" />
+            <Logo variant="text-primary text-sm sm:text 2x1" />
           </NavLink>
           {menus.map((menu) => (
             <NavLink
@@ -110,6 +110,7 @@ const Navbar = () => {
             </NavLink>
           ))}
         </div>
+
         <div className="md:flex md:gap-2">
           Themes
           {themes.map((t) => (
@@ -123,7 +124,7 @@ const Navbar = () => {
         <div>
           <NavLink
             onClick={Logout}
-            className="flex bg-special-bg3 px-4 py-3 rounded-md hover:text-white"
+            className="flex bg-special-bg3 px-4 py-3 rounded-sm hover:text-white"
           >
             <div className="mx-auto sm:mx-0 text-primary">
               <Icon.Logout />
@@ -133,7 +134,10 @@ const Navbar = () => {
           <div className="border-b my-10 border-b-special-bg"></div>
           <NavLink to="/profile" className="flex justify-between">
             <div className="mx-auto sm:mx-0 self-center">
-              <img src="images/profile.png" />
+              <img
+                class="w-10 h-10 rounded-full object-cover"
+                src="images/profile2.jpg"
+              />
             </div>
             <div className="hidden sm:block">
               <div className="text-white font-bold">{name}</div>
