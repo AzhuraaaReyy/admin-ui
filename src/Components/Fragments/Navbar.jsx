@@ -136,7 +136,7 @@ const Navbar = () => {
             <div className="mx-auto sm:mx-0 self-center">
               <img
                 class="w-10 h-10 rounded-full object-cover"
-                src="images/profile2.jpg"
+                src="images/profile.png"
               />
             </div>
             <div className="hidden sm:block">
