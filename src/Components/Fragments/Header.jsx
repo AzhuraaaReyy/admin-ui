@@ -1,13 +1,20 @@
 import Input from "../Elements/LabeledInput/Input";
 import { FaBell } from "react-icons/fa";
-
+import { AuthContext } from "../../Context/authContext";
+import { ThemeContext } from "@emotion/react";
+import { useContext } from "react";
 const Header = () => {
+  const { theme } = useContext(ThemeContext);
+  const { name } = useContext(AuthContext);
+
   const date = new Date().toDateString().slice(4);
 
   return (
-    <header className="border-b-2 py-4 px-6 flex items-center justify-between">
+    <header
+      className={`border-b-2 py-4 px-6 flex items-center justify-between ${theme.name}`}
+    >
       <div className="flex">
-        <div className="font-bold text-lg">Username</div>
+        <div className="font-bold text-lg">{name}</div>
         <div className="ms-6 text-gray-03">{date}</div>
       </div>
       <div className="flex">
