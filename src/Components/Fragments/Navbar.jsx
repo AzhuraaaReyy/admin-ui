@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { ThemeContext } from "../../Context/themeContext";
 import { AuthContext } from "../../Context/authContext";
 import axios from "axios";
-
+import { NotifContext } from "../../Context/notifContext";
 const Navbar = () => {
   const themes = [
     { name: "theme-green", bgcolor: "bg-[#299D91]", color: "#299D91" },
@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const { theme, setTheme } = useContext(ThemeContext);
   const { setIsLoggedIn, setName, name } = useContext(AuthContext);
-
+  const { setMsg, setOpen, setIsLoading } = useContext(NotifContext);
   const menus = [
     {
       id: "overview",
@@ -66,6 +66,7 @@ const Navbar = () => {
   const refreshToken = localStorage.getItem("refreshToken");
 
   const Logout = async () => {
+    setIsLoading(true);
     try {
       await axios.get("https://jwt-auth-eight-neon.vercel.app/logout", {
         headers: {
@@ -73,11 +74,8 @@ const Navbar = () => {
         },
       });
 
-      setIsLoggedIn(false);
-      setName("");
-      localStorage.removeItem("refreshToken");
-
-      navigate("/login");
+      setOpen(true);
+      setMsg({ severity: "success", desc: "Logout Success" });
     } catch (error) {
       setIsLoading(false);
 
@@ -86,6 +84,12 @@ const Navbar = () => {
         setMsg({ severity: "error", desc: error.response.data.msg });
       }
     }
+    setIsLoggedIn(false);
+    setName("");
+    setIsLoading(false);
+
+    localStorage.removeItem("refreshToken");
+    navigate("/login");
   };
 
   return (
@@ -101,8 +105,8 @@ const Navbar = () => {
               to={menu.link}
               className={({ isActive }) =>
                 isActive
-                  ? "flex bg-primary text-white font-bold px-4 py-3 rounded-md"
-                  : "flex hover:bg-special-bg3 hover:text-white px-4 py-3 rounded-md"
+                  ? "flex bg-primary text-white font-bold px-4 py-3 rounded-md zoom-in"
+                  : "flex hover:bg-special-bg3 hover:text-white px-4 py-3 rounded-md zoom-in"
               }
             >
               <div className="mx-auto sm:mx-0">{menu.icon}</div>
@@ -116,7 +120,7 @@ const Navbar = () => {
           {themes.map((t) => (
             <div
               key={t.name}
-              className={`${t.bgcolor} md:w-6 h-6 rounded-md cursor-pointer mb-2`}
+              className={`${t.bgcolor} md:w-6 h-6 rounded-md cursor-pointer mb-2 zoom-in`}
               onClick={() => setTheme(t)}
             ></div>
           ))}
@@ -124,7 +128,7 @@ const Navbar = () => {
         <div>
           <NavLink
             onClick={Logout}
-            className="flex bg-special-bg3 px-4 py-3 rounded-sm hover:text-white"
+            className="flex bg-special-bg3 px-4 py-3 rounded-sm hover:text-white zoom-in"
           >
             <div className="mx-auto sm:mx-0 text-primary">
               <Icon.Logout />
