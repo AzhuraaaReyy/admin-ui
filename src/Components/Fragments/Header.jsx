@@ -4,7 +4,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { ThemeContext } from "../../Context/themeContext";
 import { AuthContext } from "../../Context/authContext";
 import { Icon } from "../Elements/Icon";
-import { DarkModeContext } from "../../context/darkModeContext";
+import { DarkModeContext } from "../../Context/darkModeContext";
 
 const Header = () => {
   const { theme } = useContext(ThemeContext);
