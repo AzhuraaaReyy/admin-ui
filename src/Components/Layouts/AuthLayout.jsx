@@ -7,8 +7,9 @@ import { NotifContext } from "../../Context/notifContext";
 import SimpleBackdrop from "../Elements/Backdrop";
 import CustomizedSnackbars from "../Elements/SnackBar";
 import * as motion from "motion/react-client";
-import { DarkModeContext } from "../../context/darkModeContext";
+import { DarkModeContext } from "../../Context/darkModeContext";
 import { Icon } from "../Elements/Icon";
+
 const AuthLayout = (props) => {
   const { children, type } = props;
   const { msg, setMsg, open, setOpen, isLoading, setIsLoading } =
