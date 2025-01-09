@@ -8,12 +8,15 @@ import { useState } from "react";
 import CardBalance from "../Components/Fragments/Dashboard/CardBalance";
 import CardStatistic from "../Components/Fragments/Dashboard/CardStatistic";
 import CardGoal from "../Components/Fragments/Dashboard/CardGoal";
+import { useDarkMode } from "../hooks/useDarkMode";
+import CardBills from "../Components/Fragments/Dashboard/CardUpcommingBills";
 const DashboardPage = () => {
   const tabs = ["All", "Revenue", "Expense"];
 
   const [trxs, setTrx] = useState(transactions);
   //membuat tombol aktif dengan teks akan berubah warna menggunakan useState dan untuk mengaktifkannya ada di bawah dengan menggunakannya di button
   const [activeTab, setActiveTab] = useState("All");
+  const { darkMode } = useDarkMode();
 
   function handleClick(e) {
     //setActiveTab(e.target.value); // untuk membuat fitur one klik
@@ -101,7 +104,7 @@ const DashboardPage = () => {
       <div className="md:grid md:grid-cols-3 md:gap-x-6">
         <CardBalance />
         <CardGoal />
-        <Card title="Upcoming Bill" desc={billCard} />
+        <CardBills />
         <Card
           variant="md:col-span-1 md:row-span-2"
           title="Recent Transaction"

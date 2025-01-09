@@ -39,20 +39,23 @@ const FormSignIn = () => {
       setIsLoggedIn(true);
       localStorage.setItem("refreshToken", response.data.refreshToken);
 
+      // Menyimpan username ke localStorage
       const decode = jwtDecode(response.data.refreshToken);
       console.log(decode);
+      localStorage.setItem("name", decode.name); // Simpan username
+
       setName(decode.name);
 
       navigate("/");
     } catch (error) {
       setIsLoading(false);
-
       if (error.response) {
         setOpen(true);
         setMsg({ severity: "error", desc: error.response.data.msg });
       }
     }
   };
+
   const onErrors = (errors) => console.error(errors);
   return (
     <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>

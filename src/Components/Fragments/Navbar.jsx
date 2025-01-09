@@ -1,11 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { Icon } from "../Elements/Icon/index";
 import Logo from "../Elements/Logo/index";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "../../Context/themeContext";
 import { AuthContext } from "../../Context/authContext";
 import axios from "axios";
 import { NotifContext } from "../../Context/notifContext";
+
 const Navbar = () => {
   const themes = [
     { name: "theme-green", bgcolor: "bg-[#299D91]", color: "#299D91" },
@@ -19,12 +20,7 @@ const Navbar = () => {
   const { setIsLoggedIn, setName, name } = useContext(AuthContext);
   const { setMsg, setOpen, setIsLoading } = useContext(NotifContext);
   const menus = [
-    {
-      id: "overview",
-      link: "/",
-      icon: <Icon.Overview />,
-      label: "Overview",
-    },
+    { id: "overview", link: "/", icon: <Icon.Overview />, label: "Overview" },
     {
       id: "balance",
       link: "/balance",
@@ -37,31 +33,31 @@ const Navbar = () => {
       icon: <Icon.Transaction />,
       label: "Transaction",
     },
-    {
-      id: "bills",
-      link: "/bills",
-      icon: <Icon.Bills />,
-      label: "Bills",
-    },
+    { id: "bills", link: "/bills", icon: <Icon.Bills />, label: "Bills" },
     {
       id: "expense",
-      link: "/expense",
+      link: "/expenses",
       icon: <Icon.Expenses />,
       label: "Expenses",
     },
-    {
-      id: "goals",
-      link: "/goal",
-      icon: <Icon.Goals />,
-      label: "Goals",
-    },
+    { id: "goals", link: "/goals", icon: <Icon.Goals />, label: "Goals" },
     {
       id: "setting",
-      link: "/setting",
+      link: "/settings",
       icon: <Icon.Settings />,
       label: "Settings",
     },
   ];
+
+  const [userName, setUserName] = useState(name);
+
+  useEffect(() => {
+    // Cek apakah name ada di localStorage dan set ke state
+    const storedName = localStorage.getItem("name");
+    if (storedName) {
+      setUserName(storedName); // Ambil name dari localStorage
+    }
+  }, []);
 
   const refreshToken = localStorage.getItem("refreshToken");
 
@@ -89,6 +85,7 @@ const Navbar = () => {
     setIsLoading(false);
 
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("name"); // Hapus name dari localStorage saat logout
     navigate("/login");
   };
 
@@ -97,7 +94,7 @@ const Navbar = () => {
       <nav className="sticky top-0 text-special-bg2 sm:w-72 w-28 min-h-screen px-7 py-12 flex flex-col justify-between">
         <div>
           <NavLink to="/" className="flex justify-center mb-10">
-            <Logo variant="text-primary text-sm sm:text 2x1" />
+            <Logo variant="text-primary text-sm sm:text-2xl" />
           </NavLink>
           {menus.map((menu) => (
             <NavLink
@@ -139,12 +136,12 @@ const Navbar = () => {
           <NavLink to="/profile" className="flex justify-between">
             <div className="mx-auto sm:mx-0 self-center">
               <img
-                class="w-10 h-10 rounded-full object-cover"
+                className="w-10 h-10 rounded-full object-cover"
                 src="images/profile.png"
               />
             </div>
             <div className="hidden sm:block">
-              <div className="text-white font-bold">{name}</div>
+              <div className="text-white font-bold">{userName}</div>
               <div className="text-xs">View Profile</div>
             </div>
             <div className="hidden sm:block self-center">

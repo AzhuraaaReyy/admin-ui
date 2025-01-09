@@ -7,14 +7,23 @@ import { NotifContext } from "../../Context/notifContext";
 import SimpleBackdrop from "../Elements/Backdrop";
 import CustomizedSnackbars from "../Elements/SnackBar";
 import * as motion from "motion/react-client";
-
+import { DarkModeContext } from "../../context/darkModeContext";
+import { Icon } from "../Elements/Icon";
 const AuthLayout = (props) => {
   const { children, type } = props;
   const { msg, setMsg, open, setOpen, isLoading, setIsLoading } =
     useContext(NotifContext);
+  const { darkMode, setDarkMode } = useContext(DarkModeContext);
 
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
   return (
-    <div className="flex justify-center min-h-screen items-center bg-special-mainBg">
+    <div
+      className={`flex justify-center min-h-screen items-center ${
+        darkMode ? "bg-defaultBlack" : "bg-special-mainBg"
+      } ${darkMode ? "text-white" : "text-gray-900"}`}
+    >
       {isLoading && (
         <SimpleBackdrop isLoading={isLoading} setIsLoading={setIsLoading} />
       )}
@@ -46,7 +55,13 @@ const AuthLayout = (props) => {
         {/* teks start */}
         <div className="my-9 px-7 flex justify-center text-xs text-gray-03 items-center flex-col static">
           <div className="border border-gray-05 w-full"></div>
-          <div class="px-2 bg-special-mainBg absolute"> or sign in with</div>
+          <div
+            className={`px-2 ${
+              darkMode ? "bg-defaultBlack" : "bg-special-mainBg"
+            } absolute`}
+          >
+            or sign in with
+          </div>
         </div>
         {/* teks end */}
         {/* sign in with google start */}
@@ -152,7 +167,11 @@ const AuthLayout = (props) => {
             </>
           )}
         </div>
-
+        <div className="flex justify-center mt-4 ">
+          <span className="cursor-pointer" onClick={handleDarkModeToggle}>
+            <Icon.DarkMode />
+          </span>
+        </div>
         {/* link end */}
       </motion.div>
       {/* container end */}

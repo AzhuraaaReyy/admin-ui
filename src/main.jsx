@@ -5,12 +5,15 @@ import "./index.css";
 import { ThemeContextProvider } from "./Context/themeContext.jsx";
 import { AuthContextProvider } from "./Context/authContext.jsx";
 import { NotifContextProvider } from "./Context/notifContext.jsx";
+import { DarkModeProvider } from "./context/darkModeContext";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthContextProvider>
       <NotifContextProvider>
         <ThemeContextProvider>
-          <App />
+          <DarkModeProvider>
+            <App />
+          </DarkModeProvider>
         </ThemeContextProvider>
       </NotifContextProvider>
     </AuthContextProvider>

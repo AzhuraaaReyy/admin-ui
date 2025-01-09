@@ -1,22 +1,52 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import Input from "../Elements/LabeledInput/Input";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { ThemeContext } from "../../Context/themeContext";
 import { AuthContext } from "../../Context/authContext";
+import { Icon } from "../Elements/Icon";
+import { DarkModeContext } from "../../context/darkModeContext";
 
 const Header = () => {
   const { theme } = useContext(ThemeContext);
-  const { name } = useContext(AuthContext);
+  const { setName, name } = useContext(AuthContext); // Ambil name dari AuthContext
+
+  const [userName, setUserName] = useState(name); // State untuk nama pengguna
+
+  useEffect(() => {
+    // Cek apakah name ada di localStorage dan set ke state
+    const storedName = localStorage.getItem("name");
+    if (storedName) {
+      setUserName(storedName); // Ambil name dari localStorage
+    }
+  }, []);
 
   const date = new Date().toDateString().slice(4);
+  const { darkMode, setDarkMode } = useContext(DarkModeContext);
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <header
-      className={`border-b-2 py-4 px-6 flex items-center justify-between ${theme.name}`}
+      className={`border-b-2 py-4 px-6 flex items-center justify-between ${
+        theme.name
+      } ${darkMode ? "bg-defaultBlack" : "bg-special-mainBg"}`}
     >
       <div className="flex">
-        <div className="font-bold text-lg">{name}</div>
+        <div
+          className={`font-bold text-lg ${
+            darkMode ? "text-white" : "text-gray-900"
+          }`}
+        >
+          {userName} {/* Menampilkan nama pengguna */}
+        </div>
         <div className="ms-6 text-gray-03">{date}</div>
+        <div className="flex justify-center items-center ms-6">
+          <span className="cursor-pointer" onClick={handleDarkModeToggle}>
+            <Icon.DarkMode />
+          </span>
+        </div>
       </div>
       <div className="flex">
         <div className="self-center">
