@@ -5,7 +5,7 @@ import "./index.css";
 import { ThemeContextProvider } from "./Context/themeContext.jsx";
 import { AuthContextProvider } from "./Context/authContext.jsx";
 import { NotifContextProvider } from "./Context/notifContext.jsx";
-import { DarkModeProvider } from "./context/darkModeContext";
+import { DarkModeProvider } from "./Context/darkModeContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthContextProvider>
